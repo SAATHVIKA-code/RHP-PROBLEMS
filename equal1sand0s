@@ -1,0 +1,30 @@
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        System.out.println("Start small. Ship something.");
+        System.out.println("Enter a binary String");
+        Scanner s=new Scanner(System.in);
+        String st=s.nextLine();
+        HashMap<Integer,Integer> a=new HashMap<>();
+        a.put(0,-1);
+        int sum=0;
+        int maxlen=0;
+        for(int i=0;i<st.length();i++){
+            if(st.charAt(i)=='1'){
+                sum=sum+1;
+            }
+            else{
+                sum=sum-1;
+            }
+            if(a.containsKey(sum)){
+                maxlen=Math.max(maxlen,i-a.get(sum));
+            }
+            else{
+                a.put(sum,i);
+            }
+        }
+        System.out.println(maxlen);
+    }
+}
