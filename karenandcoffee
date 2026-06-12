@@ -1,0 +1,44 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner s = new Scanner(System.in);
+
+        int n = s.nextInt();   // number of segments
+        int k = s.nextInt();   // threshold
+        int q = s.nextInt();   // queries
+
+        int MAX = 200002; // safe upper bound
+        int[] diff = new int[MAX];
+
+        // read segments
+        for (int i = 0; i < n; i++) {
+            int l = s.nextInt();
+            int r = s.nextInt();
+            diff[l] += 1;
+            diff[r + 1] -= 1;
+        }
+
+        // prefix coverage count
+        int[] cover = new int[MAX];
+        for (int i = 1; i < MAX; i++) {
+            cover[i] = cover[i - 1] + diff[i];
+        }
+
+        // mark good positions (coverage >= k)
+        int[] good = new int[MAX];
+        for (int i = 1; i < MAX; i++) {
+            good[i] = good[i - 1] + (cover[i] >= k ? 1 : 0);
+        }
+
+        // answer queries
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < q; i++) {
+            int l = s.nextInt();
+            int r = s.nextInt();
+            sb.append(good[r] - good[l - 1]).append("\n");
+        }
+
+        System.out.print(sb);
+    }
+}
