@@ -1,0 +1,47 @@
+class Solution {
+    public int nearestExit(char[][] maze, int[] entrance) {
+        /* the steps we have to verify is
+        1)the exit should not be entrance
+        */
+        // walls + and dot -
+        int dr[]={0,0,-1,1};
+        int dc[]={-1,1,0,0};
+        int entrow=entrance[0];//row of entrance
+        int entcol=entrance[1];//col of entrance
+        Queue<int[]> q=new LinkedList<>();
+        //no need priority queue since we no need sorting
+            q.add(new int[]{entrow,entcol});
+            maze[entrow][entcol]='+';
+        //since entrow and entcol are valid no need if checking
+        int steps=-1;
+        //now we can do bfs
+        while(!q.isEmpty()){
+            steps++;
+            //steps is incremented to proess the number of layers
+            int qsize=q.size();
+            while(qsize-->0){
+                int cell[]=q.poll();
+                int cr=cell[0];
+                int cc=cell[1];
+               if(cr==0||cr==maze.length-1||cc==0||cc==maze[0].length-1){
+                if(cr!=entrow||cc!=entcol){
+                    return steps;
+                }
+               }
+               
+                for(int i=0;i<4;i++){
+                int nr=cr+dr[i];
+                int nc=cc+dc[i];
+                if(nr>=0&&nr<maze.length&&nc>=0&&nc<maze[0].length&&maze[nr][nc]=='.'){
+                    maze[nr][nc]='+';
+                    q.add(new int[]{nr,nc});
+                }
+               }
+
+        
+        }
+       
+    }
+    return -1;
+}
+}
