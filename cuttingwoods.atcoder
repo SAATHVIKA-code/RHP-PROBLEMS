@@ -1,0 +1,44 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <set>
+using namespace std;
+void solve(){
+  int l;
+  int q;
+  cin>>l>>q;
+  vector<pair<int,int>> a;
+  //for 3+ values we can use tuple
+  //vector can be used but TLE is the result
+  //set is good as it is automatically sorted
+  while(q--){
+    int c;
+    cin>>c;
+    int x;
+    cin>>x;
+    a.push_back({c,x});
+  }
+  set<int> st;
+  st.insert(0);
+  st.insert(l);
+  for(auto ar:a){
+    int ch=ar.first;
+    int xi=ar.second;
+    if(ch==1){
+      st.insert(xi);
+    }
+    else{
+      auto it=st.lower_bound(xi);
+      cout<<*it-*(prev(it))<<endl;
+    }
+  }
+
+}
+int main(){
+  ios::sync_with_stdio(false);
+  cin.tie(nullptr);
+  int tc=1;
+  while(tc--){
+    solve();
+  }
+}
