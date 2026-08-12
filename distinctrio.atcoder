@@ -1,0 +1,33 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+using namespace std;
+void solve(){
+    vector<int> a;
+    long long sum=0;
+    int n;
+    cin>>n;
+    while(n--){
+        int h;
+        cin>>h;
+        a.push_back(h);
+    }
+    //for upper bound and lower bound to work use sort
+    sort(a.begin(),a.end());
+    for(int e:a){
+        auto lb=lower_bound(a.begin(),a.end(),e);
+        auto ub=upper_bound(a.begin(),a.end(),e);
+        int lv=lb-a.begin();
+        int uv=a.end()-ub;
+        sum=sum+(1l*uv*lv);
+    }
+    cout<<sum;
+}
+int main(){
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int tc=1;
+    while(tc--){
+        solve();
+    }
+}
