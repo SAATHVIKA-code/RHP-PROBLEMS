@@ -1,0 +1,54 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+using namespace std;
+void solve(){
+    int n;
+    cin>>n;
+    vector<pair<int,int>> a;
+    for(int i=0;i<n;i++){
+        int h;
+        cin>>h;
+        int lt;
+        cin>>lt;
+        a.push_back({h,lt});
+    }
+    //added the pairs to vectors
+    //remove the useless values
+    //since they are so much persons we need to filter useless values
+    sort(a.begin(),a.end(),greater<>());
+    //int lt[n];
+    //int ht[n];
+    //that is static for dynamic use vector
+    vector<int> lt;
+    vector<int> ht;
+    int beg=0;
+    for(auto ar:a){
+        if(ar.second>beg){
+            beg=ar.second;
+            lt.push_back(ar.second);
+            ht.push_back(ar.first);
+
+        }
+    }
+    //now useless people are removed
+    //now we need to ask time from user
+    int q;
+    cin>>q;
+    while(q--){
+        int t;
+        cin>>t;
+        auto ub=upper_bound(lt.begin(),lt.end(),t);
+        int idx=ub-lt.begin();
+        cout<<ht[idx]<<endl;
+
+    }
+}
+int main(){
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int tc=1;
+    while(tc--){
+        solve();
+    }
+}
