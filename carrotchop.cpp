@@ -1,11 +1,12 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
+using namespace std;
 void solve(){
   int N,M;
 cin>>N>>M;
 vector<int> cnt(M+1,0);
-for(int ctr=1;ctr<=M;ctr++){
+for(int ctr=1;ctr<=N;ctr++){
   int curr;
   cin>>curr;
 cnt[curr]++;
@@ -28,7 +29,8 @@ cout<<ans<<endl;
   int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    int tc=1;
+    int tc;
+    cin>>tc;
     while(tc--){
     	solve();
     }
