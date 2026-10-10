@@ -15,11 +15,12 @@ class Sofa {
         this.moves = m;
     }
 }
+//because we are having 2 seats and rotation also is being done so class
 
 public class sofa {
 
     static final String DELIM = "-";
-
+//we are accepting string output
     private static boolean canAdd(int fsr, int fsc, int ssr, int ssc,
                                   char dir, Set<String> vis) {
         String key = fsr + DELIM + fsc + DELIM
@@ -112,7 +113,7 @@ public class sofa {
             tsr = ttr;
             ttr = temp;
         }
-
+//horizontal and vertical
         char startDir = (fsr == ssr) ? 'H' : 'V';
         char targetDir = (tsr == ttr) ? 'H' : 'V';
 
